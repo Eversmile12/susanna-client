@@ -50,26 +50,28 @@ Although the Demo Client UI is very minimal, there are a couple of tools worth s
 
 #### Compute drawings
 1. Use the process button to compute:
+
 ![Process Button](graphics-assets/process.jpg)
+
 This will trigger the Neural Network **once**, retrieving the processed drawing.
 
 2. Use the Auto Update function:
-<br/>
+
 ![Auto update](graphics-assets/auto-process.jpg)
-<br/>
+
 This will trigger the Neural Network **everytime** you stop clicking on the canvas.
 (Attention: When auto is activated, avoid fast and discontinuous strokes)
 
 3. Clear the canvas:
-<br/>
+
 ![Auto update](graphics-assets/clear.jpg)
-<br/>
+
 Will Clear the entire canvas.
 
 4. Eraser and Eraser Radius
-<br/>
+
 ![Auto update](graphics-assets/eraser.jpg)
-<br/>
+
 Standard eraser tool with stroke radius.
 
 <!-- CONTRIBUTING -->
