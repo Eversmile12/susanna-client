@@ -1,33 +1,9 @@
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Thanks again! Now go create something AMAZING! :D
-***
-***
-***
-*** To avoid retyping too much info. Do a search and replace for the following:
-*** Eversmile12, susanna-server, VittoRivabella, email, project_title, project_description
--->
-
-
-
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
 ![Contributors](https://img.shields.io/github/contributors/Eversmile12/susanna-server)
 ![Last Commit](https://img.shields.io/github/last-commit/Eversmile12/susanna-server/master)
 ![Issues](https://img.shields.io/github/issues/Eversmile12/susanna-server)
 [![License](https://img.shields.io/badge/License-Gnu%203.0-blue.svg)](./LICENSE.txt)
 
 
-<!-- PROJECT LOGO -->
-<br />
 <p align="center">
   <h3 align="center">Susanna Demo Client 🔧</h3> 
 
@@ -77,17 +53,23 @@ Although the Demo Client UI is very minimal, there are a couple of tools worth s
 ![Process Button](graphics-assets/process.jpg)
 This will trigger the Neural Network **once**, retrieving the processed drawing.
 
-2. Use the Auto Update function:<br>  
+2. Use the Auto Update function:
+<br/>
 ![Auto update](graphics-assets/auto-process.jpg)
+<br/>
 This will trigger the Neural Network **everytime** you stop clicking on the canvas.
 (Attention: When auto is activated, avoid fast and discontinuous strokes)
 
 3. Clear the canvas:
+<br/>
 ![Auto update](graphics-assets/clear.jpg)
+<br/>
 Will Clear the entire canvas.
 
 4. Eraser and Eraser Radius
+<br/>
 ![Auto update](graphics-assets/eraser.jpg)
+<br/>
 Standard eraser tool with stroke radius.
 
 <!-- CONTRIBUTING -->
