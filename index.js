@@ -1,51 +1,55 @@
 $(document).ready(function () {
     //Creates two canvas components to handle opacity -> We draw on the first component "draft" with a faked opacity thanks to css.
     // We then draw the canva onto the #main canvas with a lowered global alpha
+  
+    const canvas = $("#canvas").get(0);
 
-    const draft = $("#draft").get(0);
-    const main = $("#main").get(0);
+    const ctx = canvas.getContext("2d");
 
-    // Two contexts for the same reason as above
-    const ctx = draft.getContext("2d");
-    const mctx = main.getContext("2d");
-
-    // Getting modifiers values
-    // Set alpha as decimal ex. 0.xy
-    let alpha = $('#alpha-selector').val()/100;
-    let color = $('#colorPicker').val();
-    let radius= $('#radius-selector').val();
+    ctx.fillStyle = "#fff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
     
+    let eraserRadius = $("#eraser-radius").val();
 
-    // Color picker change listener
-    $('#colorPicker').change(()=>{
-        color = $("#colorPicker").val();
-    });
+    $("#eraser-radius").change(() =>{
+        eraserRadius = $("#eraser-radius").val();
+    } )
 
-    // Radius selector change listener
-    $('#radius-selector').change(() =>{
-        radius = $('#radius-selector').val();
-        $('#radius-label').text(radius);
-    });
-
-    // Alpha selector change listener
-    $('#alpha-selector').change(() =>{
-        alpha = $('#alpha-selector').val()/100;
-    });
-
+    
+    console.log(eraserRadius)
     // Eraser picker change listener -> could be definitely handled in a better way....
     $('#eraser').change(()=> {
         isErasing = !isErasing;
     })
 
+    $('#auto-process').change(()=>{
+        isAuto = !isAuto
+        if(isAuto){
+            $(".tool-box").addClass("is-auto")
+        }else{
+            $(".tool-box").removeClass("is-auto");
+        }
+    })   
+    
+
     // Defining painting and erasing bools
     let isPainting = false;
     let isErasing = $('#eraser').is(':checked');
-
+    let isAuto = $("#auto-process").is(':checked');
     ctx.lineCap = "round";
 
     // Defining container to store saved mouse position
     let previousPosition;
 
+    // Get cursor coords
+    function getXY(e){
+        var r = canvas.getBoundingClientRect();
+        return {
+            x: e.clientX-r.left,
+            y: e.clientY - r.top
+        };
+    }
+    
     // When mouseDown event gets triggered start capturing movements
     function onClickDown(e){
         console.log('mouse down');
@@ -57,28 +61,26 @@ $(document).ready(function () {
 
     //When mouseup event is triggered: stop drawing, draw image on #main canvas and clear #draft .
     function onClickUp(){
+        if(isAuto){
+            processDrawing();
+        }
         isPainting = false;
         console.log("endPosition()")
-        mctx.drawImage(draft,0,0);
-        ctx.clearRect(0,0, draft.width, draft.height)
     };
 
     // When mousemove is triggered start drawing
-    function onMouseMoving(e){
-        
+    function onMouseMoving(e){        
         if(!isPainting) return;
-
         let currentPosition = getXY(e);
-        // Update alpha style css 
-        draft.style.opacity = alpha;
-        //Update main canvas globalAlpha
-        mctx.globalAlpha = alpha;
+
         // Update selected color and radius
-        ctx.strokeStyle = color;
-        ctx.lineWidth = radius;
+        ctx.strokeStyle = "#bcbcbc";
+        ctx.lineWidth = 2;
         // If it's erasing set color to white
         if(isErasing && isPainting){
-            ctx.strokeStyle = '#fff';            
+            console.log(eraserRadius);
+            ctx.strokeStyle = '#fff';   
+            ctx.lineWidth = eraserRadius;         
         }
         
         // Start drawing
@@ -94,14 +96,7 @@ $(document).ready(function () {
         previousPosition = currentPosition;
     };
 
-    // Get cursor coords
-    function getXY(e){
-        var r = draft.getBoundingClientRect();
-        return {
-            x: e.clientX-r.left,
-            y: e.clientY - r.top
-        };
-    }
+    
 
     // trigger calls on window click.
     let windowComponent = $(document);
@@ -115,18 +110,46 @@ $(document).ready(function () {
         onMouseMoving(e);
         
     });
+    $("#clear-canvas").click(()=>{
+        ctx.clearRect(0,0, canvas.width, canvas.height);
+        ctx.fillStyle = "#fff";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        console.log("rect filled")
+        $("#result-image").attr("src", "https://picsum.photos/600/600");
+    })
+
 
 
     $('#process-drawing').click(()=>{
-        let dataURL = main.toDataURL();
-        $.post("http://localhost:8081/client-susanna/save-image.php",
-            {
-                img: dataURL,
-            },
-        (res, status) => {
-            
-            console.log(res);
-        }
-        );
+       processDrawing();
+       
     })
+
+    function processDrawing(){
+        console.log("php called");
+        let dataURL = canvas.toDataURL("img/jpeg");
+        let image = UtoB(dataURL, "img/jpeg")
+        let data = new FormData();
+        data.append("img", image, "img.jpeg");
+        console.log(data);
+        $.ajax({
+            url: "http://localhost:5000/predict",
+            data: data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            method: 'POST',
+            success: function(data){
+                $("#result-image").attr("src","http://localhost:5000/predict" )
+            }
+        })
+    }
+    function UtoB(dataURI, dataTYPE) {
+        var binary = atob(dataURI.split(',')[1]), array = [];
+        for(var i = 0; i < binary.length; i++) array.push(binary.charCodeAt(i));
+        return new Blob([new Uint8Array(array)], {type: dataTYPE});
+    }
 })
+
+
+
