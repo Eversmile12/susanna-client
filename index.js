@@ -5,7 +5,6 @@ $(document).ready(function () {
     const canvas = $("#canvas").get(0);
 
     const ctx = canvas.getContext("2d");
-
     ctx.fillStyle = "#fff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
@@ -18,11 +17,11 @@ $(document).ready(function () {
     
     console.log(eraserRadius)
     // Eraser picker change listener -> could be definitely handled in a better way....
-    $('#eraser').change(()=> {
+    $('#eraser').click(()=> {
         isErasing = !isErasing;
     })
 
-    $('#auto-process').change(()=>{
+    $('#auto-process').click(()=>{
         isAuto = !isAuto
         if(isAuto){
             $(".tool-box").addClass("is-auto")
@@ -34,8 +33,8 @@ $(document).ready(function () {
 
     // Defining painting and erasing bools
     let isPainting = false;
-    let isErasing = $('#eraser').is(':checked');
-    let isAuto = $("#auto-process").is(':checked');
+    let isErasing = false;
+    let isAuto = false;
     ctx.lineCap = "round";
 
     // Defining container to store saved mouse position
@@ -121,7 +120,8 @@ $(document).ready(function () {
 
 
     $('#process-drawing').click(()=>{
-       processDrawing();
+        console.log("Process drawing clicked")
+        processDrawing();
        
     })
 

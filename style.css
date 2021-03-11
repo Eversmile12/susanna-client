@@ -1,0 +1,95 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    font-size: 1.6rem;
+    box-sizing: border-box;
+}
+
+.main-navbar{
+    background-color:#222222;
+    color: #f7f7f7;
+    height: 4rem;
+    padding-top: 1rem;
+    text-align: center;
+}
+
+
+.grid-container{
+    height: 768px;
+    margin: 0 auto;
+    width: 160rem;
+    
+}
+
+
+.is-auto {
+  background-color: green !important;
+}
+
+.tool-box{
+  font-family: monospace;
+  font-size: 14px;
+  color: #eee;
+  margin-left: -10px;
+  position: fixed;
+  bottom: 2%;
+  right: 5%;
+
+}
+
+
+.eraser-container{
+    display: inline-block;
+    position: relative;
+}
+
+
+.tool-btn{
+    background-color: #F3B700;
+    display: inline-block;
+    padding: 3rem;
+    border-radius: 100px;
+    position: relative;
+    box-shadow: 0 .5rem .5rem rgba(36, 36, 36, 0.22);
+    -webkit-backface-visibility: hidden;
+    transition: all .2s;
+}
+
+
+.tool-btn:hover{
+    background-color: #dfa806;
+    box-shadow: 0 .8rem 1rem rgba(36, 36, 36, 0.15);
+    transform: translateY(-3%);
+}
+
+
+.btn-main{
+    background: none;
+    border: none;
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.tool-btn:not(:last-child){
+    margin-right: 1.5rem;
+}
+
+
+#eraser-radius{
+    writing-mode: bt-lr; /* IE */
+    -webkit-appearance: slider-vertical; /* WebKit */
+    position: absolute;
+    top: 0%;
+    left: 40%;
+    transform: translate(-50%, -110%);
+}
