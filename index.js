@@ -140,6 +140,7 @@ $(document).ready(function () {
             method: "POST",
             success: function (data) {
                 $("#result-image").attr("src", "http://localhost:5000/predict");
+                $("#download-image").attr("href", "http://localhost:5000/predict");
             },
         });
     }
@@ -168,6 +169,7 @@ function fetchAndSetRandImage(){
     var imageIndex = Math.round(Math.random()*(images.length-1));
 
     $("#result-image").attr("src", "./graphics-assets/images/"+images[imageIndex]);
+    $("#download-image").attr("href", "./graphics-assets/images/"+images[imageIndex]);
 }
 
 function replaceHeaderLetter(){
