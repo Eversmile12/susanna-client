@@ -9,13 +9,14 @@
   crossorigin="anonymous"></script>
   <link rel="stylesheet" href="./style.css">
   <script src="index.js"></script>
-
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@200;400;600&display=swap" rel="stylesheet">
   </head>
 
   <body>
     <nav class="main-navbar">
       <div class="nav-container">
-        <h1 class="main-header">Narciso</h1>
+        <h1 class="main-header">NARCISO_</h1>
       </div>
     </nav>
 
@@ -26,20 +27,20 @@
      
       
       <div class="tool-btn">
-        <a id="process-drawing" class="btn-main"><img src="./graphics-assets/icons/005-gears.png" width="32" height="32"></a>
+        <a id="process-drawing" class="btn-main"><img src="./graphics-assets/icons/005-gears.png"  width="33" height="33"></a>
       </div>
-      <div class="tool-btn">
-        <a id="process-drawing"  class="btn-main"><img id="auto-process" src="./graphics-assets/icons/001-robot.png" width="32" height="32"></a>
+      <div class="tool-btn activable" id="auto-process">
+        <a   class="btn-main"><img  src="./graphics-assets/icons/001-robot.png"  width="33" height="33"></a>
       </div>
 
       
 
       <div class="tool-btn">
-        <a id="process-drawing"  class="btn-main"><img id="clear-canvas" src="./graphics-assets/icons/004-clean-1.png" width="30" height="30"></a>
+        <a id="process-drawing"  class="btn-main"><img id="clear-canvas" src="./graphics-assets/icons/004-clean-1.png"   width="33" height="33"></a>
       </div>
       <div class="eraser-container">
-        <div class="tool-btn">
-          <a id="process-drawing"  class="btn-main"><img id="eraser" src="./graphics-assets/icons/002-eraser.png" width="30" height="30"></a>
+        <div class="tool-btn activable eraser-container-button" id="eraser-button"> 
+          <a id="eraser" class="btn-main"><img src="./graphics-assets/icons/002-eraser.png"  width="33" height="33"></a>
         </div>
         <input id="eraser-radius" orient="vertical" type="range" min="1" max="100" value="50">
       </div>
@@ -50,8 +51,8 @@
     <div>
       <div class="grid-container">
         <div class="Canvas">
-          <canvas class="image-box" id="canvas" width="768" height="768"></canvas>
-          <img class="image-box" width="49%" height="768" id="result-image" src="https://picsum.photos/512/512">
+          <canvas class="image-box" id="canvas" width="750" height="750"></canvas>
+          <img class="image-box" width="49%" height="750" width="750" id="result-image">
         </div>
       </div>  
 

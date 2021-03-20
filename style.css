@@ -11,33 +11,53 @@ html{
 body{
     font-size: 1.6rem;
     box-sizing: border-box;
+    overflow: hidden;
+    background-color: #e4e4e4;
 }
 
 .main-navbar{
     background-color:#222222;
     color: #f7f7f7;
-    height: 4rem;
-    padding-top: 1rem;
+    height: 7rem;
     text-align: center;
+    position: relative;
 }
 
+
+.main-header{
+    font-family: "Spartan", sans-serif;
+    font-weight: 400;
+    font-size: 1.8rem;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    letter-spacing: .4rem;
+}
 
 .grid-container{
-    height: 768px;
+    height: 750px;
+    width: 150rem;
     margin: 0 auto;
-    width: 160rem;
-    
+    padding-top: .5rem;
 }
 
+.image-box:not(:last-child){
+    border-radius: 5px 0 0 5px;
+}
 
-.is-auto {
-  background-color: green !important;
+.image-box:last-child{
+    border-radius: 0 5px 5px 0;
+}
+
+.is-active {
+  background-color: #1668c5 !important;
 }
 
 .tool-box{
   font-family: monospace;
   font-size: 14px;
-  color: #eee;
+  color: #f7f7f7;
   margin-left: -10px;
   position: fixed;
   bottom: 2%;
@@ -53,7 +73,7 @@ body{
 
 
 .tool-btn{
-    background-color: #F3B700;
+    background-color: #222222;
     display: inline-block;
     padding: 3rem;
     border-radius: 100px;
@@ -65,7 +85,7 @@ body{
 
 
 .tool-btn:hover{
-    background-color: #dfa806;
+    background-color: #1b76df;
     box-shadow: 0 .8rem 1rem rgba(36, 36, 36, 0.15);
     transform: translateY(-3%);
 }
@@ -88,8 +108,20 @@ body{
 #eraser-radius{
     writing-mode: bt-lr; /* IE */
     -webkit-appearance: slider-vertical; /* WebKit */
+    background-color: #fff;
     position: absolute;
     top: 0%;
     left: 40%;
     transform: translate(-50%, -110%);
+    transition: all .4s;
+    opacity: 0;
 }
+
+.eraser-container:hover #eraser-radius{
+    display: inline;
+    opacity: 1;
+}
+
+for file in /home/user/*; do
+  echo "${file##*/}"
+done
