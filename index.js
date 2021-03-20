@@ -69,11 +69,11 @@ $(document).ready(function () {
         if (isAuto) {
             end = new Date();
             console.log("You're calling narciso 🤖");
-
-            if(end - start > 2000){
+            let diff = end - start
+            if(diff > 3000){
                 processDrawing();
                 start = end;
-            }else{
+            }else if(diff < 1000){
                 alert("Slow down, not yet quantum baybe🤖")
             }
         } 
